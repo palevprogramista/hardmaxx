@@ -1,0 +1,297 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<style>
+.hero {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(42, 47, 79, 0.2) 0%, rgba(26, 27, 38, 0) 70%);
+    z-index: -1;
+}
+
+.hero h1 {
+    font-size: 5rem;
+    margin: 0;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease forwards;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: var(--accent);
+    max-width: 800px;
+    margin: 2rem auto;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease 0.3s forwards;
+}
+
+.bone-image {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    margin: 4rem auto;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: scaleIn 1s ease 0.6s forwards;
+    transition: transform 0.5s ease;
+}
+
+.bone-image:hover {
+    transform: scale(1.02);
+}
+
+.content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.section-title.visible {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.section-content {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.section-content.visible {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(229, 190, 236, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.feature-card.visible {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    font-size: 1.1rem;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.improvement-section {
+    background: var(--card-bg);
+    border: 1px solid rgba(229, 190, 236, 0.1);
+    border-radius: 20px;
+    padding: 3rem;
+    margin: 4rem 0;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.improvement-section.visible {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.improvement-section h2 {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+}
+
+.improvement-section p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.improvement-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.improvement-section li {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+    position: relative;
+}
+
+.improvement-section li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+@media (max-width: 1200px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .improvement-section {
+        padding: 2rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Zygomatic Bone</h1>
+    <p>Explore the structure and function of the cheek bone, a key component of the facial skeleton.</p>
+    
+    <img src="{% static 'main/images/zygomatic.png' %}" alt="Zygomatic Bone" class="bone-image">
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">Anatomy Overview</h2>
+    <div class="section-content">
+        <p>The zygomatic bone, commonly known as the cheekbone, is a paired bone of the human skull. It articulates with the maxilla, temporal, sphenoid, and frontal bones, forming the prominence of the cheek and part of the lateral wall and floor of the orbit.</p>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">Key Features</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>Structure</h3>
+            <p>The zygomatic bone consists of three surfaces: lateral, temporal, and orbital. It has four processes: frontal, temporal, maxillary, and orbital.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Function</h3>
+            <p>Provides structural support to the face, protects the eye, and serves as an attachment site for muscles of facial expression and mastication.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Clinical Significance</h3>
+            <p>Fractures of the zygomatic bone are common in facial trauma and can affect vision, chewing, and facial appearance.</p>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="improvement-section">
+        <h2>How to Improve Zygomatic Development</h2>
+        <p>Enhancing zygomatic bone development and prominence can be achieved through a combination of modern techniques and proper nutrition. Here are the most effective methods:</p>
+        
+        <h3>Zygomatic Fillers</h3>
+        <p>Zygomatic fillers are a non-surgical option for enhancing cheekbone prominence. These injectable treatments use hyaluronic acid or other biocompatible substances to add volume and definition to the zygomatic region. The results are immediate and can last 12-24 months, depending on the type of filler used.</p>
+        
+        <h3>Bone Growth Stimulation</h3>
+        <p>Recent research suggests that targeted vibration therapy can stimulate bone growth in the zygomatic region. This method involves:</p>
+        <ul>
+            <li>Using low-frequency vibration devices specifically designed for facial bone stimulation</li>
+            <li>Regular sessions of 10-15 minutes, 2-3 times per day</li>
+            <li>Consistent application over several months for optimal results</li>
+        </ul>
+        
+        <h3>Essential Minerals for Bone Growth</h3>
+        <p>Proper nutrition is crucial for supporting bone development and maintenance. Key minerals include:</p>
+        <ul>
+            <li>Calcium: Essential for bone structure and strength</li>
+            <li>Magnesium: Helps with calcium absorption and bone formation</li>
+            <li>Zinc: Important for bone growth and repair</li>
+            <li>Vitamin D: Critical for calcium absorption and bone health</li>
+            <li>Vitamin K2: Helps direct calcium to bones and teeth</li>
+        </ul>
+        
+        <p>For optimal results, combine these methods with a healthy lifestyle, proper sleep, and stress management. Remember that bone development is a gradual process, and consistency is key to seeing improvements.</p>
+    </div>
+</div>
+
+<script>
+// Intersection Observer for animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+// Observe all animated elements
+document.querySelectorAll('.section-title, .section-content, .feature-card, .improvement-section').forEach(el => {
+    observer.observe(el);
+});
+
+// Parallax effect for bone image
+document.addEventListener('mousemove', (e) => {
+    const boneImage = document.querySelector('.bone-image');
+    const mouseX = e.clientX / window.innerWidth;
+    const mouseY = e.clientY / window.innerHeight;
+    const moveX = (mouseX - 0.5) * 20;
+    const moveY = (mouseY - 0.5) * 20;
+    
+    boneImage.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.02)`;
+});
+</script>
+{% endblock %} 

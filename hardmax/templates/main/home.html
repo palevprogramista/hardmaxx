@@ -1,0 +1,199 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<style>
+.hero {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(42, 47, 79, 0.2) 0%, rgba(26, 27, 38, 0) 70%);
+    z-index: -1;
+}
+
+.hero h1 {
+    font-size: 5rem;
+    margin: 0;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease forwards;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: var(--accent);
+    max-width: 800px;
+    margin: 2rem auto;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease 0.3s forwards;
+}
+
+.bone-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.bone-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(229, 190, 236, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 0.6s ease forwards;
+    animation-delay: calc(var(--delay) * 0.1s);
+}
+
+.bone-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent);
+}
+
+.bone-card h3 {
+    font-size: 1.8rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bone-card p {
+    font-size: 1.1rem;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.purpose-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.purpose-section h2 {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 0.6s ease forwards;
+    animation-delay: 0.4s;
+}
+
+.purpose-section p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 0.6s ease forwards;
+    animation-delay: 0.6s;
+}
+
+@media (max-width: 1200px) {
+    .bone-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    .bone-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .purpose-section h2 {
+        font-size: 2rem;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Hardmax</h1>
+    <p>Your comprehensive guide to understanding and improving facial bone structure</p>
+</div>
+
+<div class="purpose-section">
+    <h2>Our Mission</h2>
+    <p>Hardmax is dedicated to providing scientifically-backed information and practical methods for improving facial bone structure. We focus on natural techniques, proper nutrition, and evidence-based approaches to help you achieve optimal facial development.</p>
+</div>
+
+<div class="bone-grid">
+    <a href="{% url 'frontal' %}" class="bone-card" style="--delay: 1">
+        <h3>Frontal Bone</h3>
+        <p>Learn about forehead development and improvement techniques</p>
+    </a>
+    <a href="{% url 'zygomatic' %}" class="bone-card" style="--delay: 2">
+        <h3>Zygomatic Bone</h3>
+        <p>Discover methods to enhance cheekbone prominence</p>
+    </a>
+    <a href="{% url 'maxilla' %}" class="bone-card" style="--delay: 3">
+        <h3>Maxilla</h3>
+        <p>Explore maxillary development and proper oral posture</p>
+    </a>
+    <a href="{% url 'mandible' %}" class="bone-card" style="--delay: 4">
+        <h3>Mandible</h3>
+        <p>Understand jaw development and improvement techniques</p>
+    </a>
+    <a href="{% url 'temporal' %}" class="bone-card" style="--delay: 5">
+        <h3>Temporal Bone</h3>
+        <p>Learn about temporal bone structure and development</p>
+    </a>
+    <a href="{% url 'parietal' %}" class="bone-card" style="--delay: 6">
+        <h3>Parietal Bone</h3>
+        <p>Explore cranial vault development and improvement</p>
+    </a>
+</div>
+{% endblock %} 

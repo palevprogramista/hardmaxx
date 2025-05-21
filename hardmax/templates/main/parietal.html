@@ -1,0 +1,161 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<style>
+.hero {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(42, 47, 79, 0.2) 0%, rgba(26, 27, 38, 0) 70%);
+    z-index: -1;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin: 0;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease forwards;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: var(--accent);
+    max-width: 800px;
+    margin: 2rem auto;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease 0.3s forwards;
+}
+
+.content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 0.6s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.section-content {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text);
+}
+
+.improvement-section {
+    background: var(--card-bg);
+    border: 1px solid rgba(229, 190, 236, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.improvement-section h3 {
+    font-size: 1.8rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.improvement-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.improvement-section li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.improvement-section li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Parietal Bone</h1>
+    <p>The paired bones forming the sides and roof of the cranial vault</p>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">Anatomy Overview</h2>
+    <div class="section-content">
+        <p>The parietal bones are two large bones that form the sides and roof of the cranium. They meet in the middle at the sagittal suture and join with the frontal bone at the coronal suture. These bones play a crucial role in protecting the brain and maintaining the shape of the skull.</p>
+    </div>
+
+    <div class="improvement-section">
+        <h3>How to Improve Parietal Bone Development</h3>
+        <ul>
+            <li><strong>Proper Head Posture:</strong> Maintain correct head posture to ensure even pressure distribution on the skull.</li>
+            <li><strong>Sleep Position:</strong> Avoid sleeping in the same position to prevent asymmetrical development.</li>
+            <li><strong>Nutrition:</strong> Ensure adequate intake of calcium, vitamin D, and other minerals essential for bone health.</li>
+            <li><strong>Physical Activity:</strong> Regular exercise promotes overall bone health and development.</li>
+            <li><strong>Stress Management:</strong> Reduce stress to prevent tension that can affect skull development.</li>
+            <li><strong>Hydration:</strong> Maintain proper hydration for optimal bone health and development.</li>
+        </ul>
+    </div>
+</div>
+{% endblock %} 

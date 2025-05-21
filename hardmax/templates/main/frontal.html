@@ -1,0 +1,288 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<style>
+.hero {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(42, 47, 79, 0.2) 0%, rgba(26, 27, 38, 0) 70%);
+    z-index: -1;
+}
+
+.hero h1 {
+    font-size: 5rem;
+    margin: 0;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease forwards;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: var(--accent);
+    max-width: 800px;
+    margin: 2rem auto;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease 0.3s forwards;
+}
+
+.bone-image {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    margin: 4rem auto;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: scaleIn 1s ease 0.6s forwards;
+    transition: transform 0.5s ease;
+}
+
+.bone-image:hover {
+    transform: scale(1.02);
+}
+
+.content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.section-title.visible {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.section-content {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.section-content.visible {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(229, 190, 236, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.feature-card.visible {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    font-size: 1.1rem;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.improvement-section {
+    background: var(--card-bg);
+    border: 1px solid rgba(229, 190, 236, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.improvement-section h3 {
+    font-size: 1.8rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.improvement-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.improvement-section li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.improvement-section li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+@media (max-width: 1200px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Frontal Bone</h1>
+    <p>Explore the structure and function of the forehead bone, a key component of the cranial skeleton.</p>
+    
+    <img src="{% static 'main/images/frontal.png' %}" alt="Frontal Bone" class="bone-image">
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">Anatomy Overview</h2>
+    <div class="section-content">
+        <p>The frontal bone forms the forehead and the upper part of the eye sockets. It articulates with the parietal bones posteriorly and the zygomatic bones laterally, playing a crucial role in protecting the brain and supporting facial structures.</p>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">Key Features</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>Structure</h3>
+            <p>The frontal bone consists of a vertical portion (squama) and horizontal portions (orbital plates). It contains the frontal sinuses and forms the supraorbital margins.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Function</h3>
+            <p>Provides protection for the frontal lobes of the brain, supports the upper face, and contributes to the formation of the cranial cavity and orbits.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Clinical Significance</h3>
+            <p>Fractures of the frontal bone can affect vision, cause cerebrospinal fluid leaks, and impact facial aesthetics. The frontal sinuses are prone to infection and inflammation.</p>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">Understanding Frontal Bone Structure</h2>
+    <div class="improvement-section">
+        <h3>Genetic Factors in Frontal Bone Development</h3>
+        <ul>
+            <li><strong>Primary Genetic Influence:</strong> The shape and development of the frontal bone is predominantly determined by genetic factors. The bone structure you inherit plays the most significant role in your forehead's appearance.</li>
+            <li><strong>Natural Variation:</strong> There is a wide range of normal variation in frontal bone shape and size among individuals, all of which can be considered healthy and normal.</li>
+            <li><strong>Age-Related Changes:</strong> While the basic structure is genetic, the frontal bone can undergo subtle changes with age, particularly in response to hormonal changes during puberty.</li>
+            <li><strong>Acceptance:</strong> Understanding that frontal bone structure is largely genetic can help in developing a healthy perspective on one's appearance.</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+// Intersection Observer for animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+// Observe all animated elements
+document.querySelectorAll('.section-title, .section-content, .feature-card').forEach(el => {
+    observer.observe(el);
+});
+
+// Parallax effect for bone image
+document.addEventListener('mousemove', (e) => {
+    const boneImage = document.querySelector('.bone-image');
+    const mouseX = e.clientX / window.innerWidth;
+    const mouseY = e.clientY / window.innerHeight;
+    const moveX = (mouseX - 0.5) * 20;
+    const moveY = (mouseY - 0.5) * 20;
+    
+    boneImage.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.02)`;
+});
+</script>
+{% endblock %} 

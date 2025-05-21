@@ -1,0 +1,224 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<style>
+.hero {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(42, 47, 79, 0.2) 0%, rgba(26, 27, 38, 0) 70%);
+    z-index: -1;
+}
+
+.hero h1 {
+    font-size: 5rem;
+    margin: 0;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease forwards;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: var(--accent);
+    max-width: 800px;
+    margin: 2rem auto;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease 0.3s forwards;
+}
+
+.bone-image {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    margin: 4rem auto;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: scaleIn 1s ease 0.6s forwards;
+    transition: transform 0.5s ease;
+}
+
+.bone-image:hover {
+    transform: scale(1.02);
+}
+
+.content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.section-title.visible {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.section-content {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.section-content.visible {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(229, 190, 236, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.feature-card.visible {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    font-size: 1.1rem;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+@media (max-width: 1200px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Temporal Bone</h1>
+    <p>Explore the structure and function of the temporal bone, a complex component of the skull that houses vital sensory organs.</p>
+    
+    <img src="{% static 'main/images/temporal.png' %}" alt="Temporal Bone" class="bone-image">
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">Anatomy Overview</h2>
+    <div class="section-content">
+        <p>The temporal bone is a paired bone that forms the lower lateral aspects of the skull. It houses the middle and inner ear structures, forms part of the temporomandibular joint, and provides attachment for various muscles and ligaments.</p>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">Key Features</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>Structure</h3>
+            <p>The temporal bone consists of four parts: squamous, tympanic, mastoid, and petrous. It contains the external auditory meatus, middle ear cavity, and inner ear structures.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Function</h3>
+            <p>Protects vital sensory organs, supports hearing and balance functions, provides attachment for jaw muscles, and contributes to the formation of the cranial base.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Clinical Significance</h3>
+            <p>Fractures can affect hearing, balance, and facial nerve function. The temporal bone is also involved in various conditions affecting the ear and surrounding structures.</p>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">Development</h2>
+    <div class="section-content">
+        <p>The temporal bone develops through both intramembranous and endochondral ossification. The petrous portion forms first, followed by the squamous and tympanic parts. The mastoid process develops postnatally.</p>
+    </div>
+</div>
+
+<script>
+// Intersection Observer for animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+// Observe all animated elements
+document.querySelectorAll('.section-title, .section-content, .feature-card').forEach(el => {
+    observer.observe(el);
+});
+
+// Parallax effect for bone image
+document.addEventListener('mousemove', (e) => {
+    const boneImage = document.querySelector('.bone-image');
+    const mouseX = e.clientX / window.innerWidth;
+    const mouseY = e.clientY / window.innerHeight;
+    const moveX = (mouseX - 0.5) * 20;
+    const moveY = (mouseY - 0.5) * 20;
+    
+    boneImage.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.02)`;
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,161 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<style>
+.hero {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(42, 47, 79, 0.2) 0%, rgba(26, 27, 38, 0) 70%);
+    z-index: -1;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin: 0;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease forwards;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: var(--accent);
+    max-width: 800px;
+    margin: 2rem auto;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease 0.3s forwards;
+}
+
+.content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 0.6s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.section-content {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text);
+}
+
+.improvement-section {
+    background: var(--card-bg);
+    border: 1px solid rgba(229, 190, 236, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.improvement-section h3 {
+    font-size: 1.8rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.improvement-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.improvement-section li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.improvement-section li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Mandible</h1>
+    <p>The lower jaw bone, a crucial component of facial structure and function</p>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">Anatomy Overview</h2>
+    <div class="section-content">
+        <p>The mandible, or lower jaw, is the largest and strongest bone of the face. It forms the lower jaw and holds the lower teeth in place. The mandible consists of a horizontal body and two vertical rami, which connect to the temporal bones of the skull.</p>
+    </div>
+
+    <div class="improvement-section">
+        <h3>How to Improve Mandible Development</h3>
+        <ul>
+            <li><strong>Proper Tongue Posture:</strong> Maintain correct tongue posture against the roof of the mouth to support proper jaw development.</li>
+            <li><strong>Chewing Exercises:</strong> Regular chewing of tough foods can help strengthen the jaw muscles and promote bone development.</li>
+            <li><strong>Mewing Technique:</strong> Practice proper mewing to encourage forward growth of the mandible.</li>
+            <li><strong>Jaw Exercises:</strong> Perform specific jaw exercises to strengthen the masseter muscles and improve jaw definition.</li>
+            <li><strong>Nutrition:</strong> Ensure adequate intake of calcium, vitamin D, and other minerals essential for bone health.</li>
+            <li><strong>Posture:</strong> Maintain good neck and head posture to prevent jaw misalignment.</li>
+        </ul>
+    </div>
+</div>
+{% endblock %} 
